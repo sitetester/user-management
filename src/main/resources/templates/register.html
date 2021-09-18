@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>User Registration</h1>
+<form action="/register" enctype="multipart/form-data" method="POST" th:object="${user}" >
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td>
+                <input th:field="*{firstName}"/>
+                <span th:each="error: ${#fields.errors('firstName')}" th:text="${error}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td>
+                <input th:field="*{lastName}"/>
+                <span th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <input type="email" th:field="*{email}"/>
+                <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
+                <span th:if="${emailAlreadyTaken}" th:text=${emailAlreadyTaken}></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>
+                <input type="password" th:field="*{password}"/>
+                <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Photo:</td>
+            <td>
+                <input type="file" th:field="*{photo}"/>
+                <span th:each="error : ${#fields.errors('photo')}" th:text="${error}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">Register</button> &nbsp; <a th:href="@{/login.html}">Login</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
