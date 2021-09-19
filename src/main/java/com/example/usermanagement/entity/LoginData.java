@@ -8,7 +8,7 @@ public class LoginData {
 
     @Email(message = "Please provide a valid email")
     @NotBlank(message = "Please provide an email")
-    private String email;
+    private String email = "admin@example.com";
 
     @NotEmpty(message = "Please provide a password")
     private String password;

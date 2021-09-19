@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ public class LoginController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public ModelAndView login(ModelAndView modelAndView, LoginData loginData) {
@@ -41,7 +44,7 @@ public class LoginController {
         try {
             UserDetails user = userDetailsService.loadUserByUsername(loginData.getEmail());
             if (new BCryptPasswordEncoder().matches(loginData.getPassword(), user.getPassword())) {
-                modelAndView.setViewName("redirect:dashboard");
+                modelAndView.setViewName("redirect:/admin/demo");
             } else {
                 modelAndView.addObject("invalidPassword", "Invalid password");
             }

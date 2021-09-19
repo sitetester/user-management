@@ -52,8 +52,6 @@ public class RegistrationController {
             return modelAndView;
         }
 
-        System.out.println(file.getOriginalFilename());
-
         // proceed with registration
         if (!file.isEmpty()) {
             Path path = uploadHelper.uploadFile(file);

@@ -42,6 +42,15 @@ public class User implements UserDetails {
     @Column
     private String photo;
 
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -80,47 +89,62 @@ public class User implements UserDetails {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getEmailAlreadyTaken() {
         return emailAlreadyTaken;
     }
 
-    public void setEmailAlreadyTaken(String emailAlreadyTaken) {
+    public User setEmailAlreadyTaken(String emailAlreadyTaken) {
         this.emailAlreadyTaken = emailAlreadyTaken;
+        return this;
     }
 
     public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public User setPhoto(String photo) {
         this.photo = photo;
+        return this;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(Collection<Role> roles) {
+        this.roles = roles;
+        return this;
     }
 }
