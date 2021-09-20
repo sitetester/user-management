@@ -8,17 +8,17 @@ public class LoginData {
 
     @Email(message = "Please provide a valid email")
     @NotBlank(message = "Please provide an email")
-    private String email = "admin@example.com";
+    private String username;
 
     @NotEmpty(message = "Please provide a password")
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

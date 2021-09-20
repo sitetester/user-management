@@ -29,7 +29,7 @@ public class RegistrationController {
     public ModelAndView register(ModelAndView modelAndView, User user) {
         modelAndView
                 .addObject("user", user)
-                .setViewName("register");
+                .setViewName("/register");
 
         return modelAndView;
     }
