@@ -1,4 +1,4 @@
-package com.example.usermanagement.listener;
+package com.example.usermanagement.fixture;
 
 import com.example.usermanagement.entity.Privilege;
 import com.example.usermanagement.entity.Role;
@@ -46,11 +46,12 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Privilege delete = createPrivilegeIfNotFound("DELETE");
 
         List<Privilege> adminPrivileges = Arrays.asList(read, create, edit, delete);
-        List<Privilege> editorPrivileges = Arrays.asList(read, create, edit);
+        List<Privilege> editorPrivileges = Arrays.asList(read, edit);
+        List<Privilege> userPrivileges = Arrays.asList(read);
 
         Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         Role roleEditor = createRoleIfNotFound("ROLE_EDITOR", editorPrivileges);
-        Role roleUser = createRoleIfNotFound("ROLE_USER", List.of(read));
+        Role roleUser = createRoleIfNotFound("ROLE_USER", userPrivileges);
 
         setupUser("test", "test", "demo", "admin@example.com", List.of(roleAdmin), true );
         setupUser("test", "test", "demo", "editor@example.com", List.of(roleEditor), true );
