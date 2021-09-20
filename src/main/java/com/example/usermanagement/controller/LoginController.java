@@ -25,4 +25,9 @@ public class LoginController {
 
         return modelAndView;
     }
+
+    @GetMapping("/")
+    public String index(ModelAndView modelAndView) {
+        return "index";
+    }
 }

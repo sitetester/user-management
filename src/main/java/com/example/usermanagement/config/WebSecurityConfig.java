@@ -1,5 +1,6 @@
 package com.example.usermanagement.config;
 
+import com.example.usermanagement.handler.LoginFailureHandler;
 import com.example.usermanagement.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private LoginFailureHandler failureHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -57,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/articles/**").hasAnyRole("ADMIN", "USER", "EDITOR")
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/index", true).permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureHandler(failureHandler).permitAll()
                 .and()
                 .logout().permitAll();
     }

@@ -5,16 +5,20 @@
 
 <div class="container">
 
-    <p>Welcome: <span sec:authentication="name">Username</span></p>
+    <div sec:authorize="isAnonymous()">
+        <a th:href="@{/login}">Login</a>
+    </div>
 
-    <ul>
-        <li><a href="/admin/articles">Articles (admin only)</a></li>
-        <li><a href="/articles">Articles</a></li>
+    <div class="button-group" sec:authorize="isFullyAuthenticated()">
 
-    </ul>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout" />
-    </form>
+        <div>Welcome: <span sec:authentication="name">Username</span> | <a href="/logout">Logout</a> </div>
+
+        <ul>
+            <li><a href="/admin/articles">Articles (admin only)</a></li>
+            <li><a href="/articles">Articles</a></li>
+        </ul>
+    </div>
+
 </div>
 
 </body>
