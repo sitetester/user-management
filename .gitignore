@@ -37,3 +37,5 @@ photos
 .mvn
 mvnw
 mvnw.cmd
+
+application.log
